@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CampusCart — Student Projects & Development Solutions</title>
+
+  <meta
+    name="description"
+    content="CampusCart provides small to large college projects for students using Flutter, Python, React, Vue, Next.js, Nuxt, Laravel and PHP."
+  />
+
+  <style>
+    :root {
+      --primary: #5b5cf0;
+      --primary-dark: #4546d8;
+      --secondary: #8b5cf6;
+      --dark: #111827;
+      --text: #4b5563;
+      --muted: #6b7280;
+      --light: #f8fafc;
+      --border: #e5e7eb;
+      --white: #ffffff;
+      --green: #10b981;
+      --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      box-shadow: 0 8px 20px rgba(91, 92, 240, 0.25);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 12px;
+      padding: 12px 19px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid transparent;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      box-shadow: 0 10px 25px rgba(91, 92, 240, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(91, 92, 240, 0.3);
+    }
+
+    .btn-outline {
+      border-color: var(--border);
+      background: white;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 90px 0 100px;
+
+      background:
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(139, 92, 246, 0.14),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(91, 92, 240, 0.10),
+          transparent 30%
+        ),
+        #f8faff;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #4f46e5;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      max-width: 700px;
+      font-size: clamp(42px, 5vw, 68px);
+      line-height: 1.03;
+      letter-spacing: -3px;
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        135deg,
+        #5b5cf0,
+        #9333ea
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 600px;
+      color: var(--text);
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 35px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .trust-row span {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    /* =========================
+       HERO PROJECT PREVIEW
+    ========================= */
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .project-dashboard {
+      padding: 22px;
+      border-radius: 25px;
+      background: white;
+      border: 1px solid rgba(229, 231, 235, 0.8);
+      box-shadow: var(--shadow);
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .dashboard-title {
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .dashboard-label {
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      background: #eef2ff;
+      padding: 5px 9px;
+      border-radius: 999px;
+    }
+
+    .project-preview {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+      transition: 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.07);
+    }
+
+    .project-image {
+      height: 125px;
+      display: grid;
+      place-items: center;
+      font-size: 45px;
+      background: linear-gradient(
+        135deg,
+        #eef2ff,
+        #f5f3ff
+      );
+    }
+
+    .project-info {
+      padding: 13px;
+    }
+
+    .project-info h4 {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .project-info p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .tech-tag {
+      display: inline-block;
+      margin-top: 9px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: #f3f4f6;
+      color: #4b5563;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .floating-card {
+      position: absolute;
+      right: -35px;
+      bottom: 25px;
+      background: white;
+      border-radius: 16px;
+      padding: 15px 18px;
+      box-shadow: 0 15px 40px rgba(15, 23, 42, 0.14);
+      border: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .floating-card strong {
+      display: block;
+      font-size: 18px;
+      color: var(--primary);
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 45px;
+    }
+
+    .eyebrow {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 14px;
+    }
+
+    .section-heading p {
+      color: var(--text);
+    }
+
+    /* =========================
+       PROJECT CATEGORIES
+    ========================= */
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .category {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      transition: 0.25s;
+      background: white;
+    }
+
+    .category:hover {
+      transform: translateY(-5px);
+      border-color: #c7d2fe;
+      box-shadow: var(--shadow);
+    }
+
+    .category-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: #eef2ff;
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .category h3 {
+      margin-bottom: 5px;
+      font-size: 17px;
+    }
+
+    .category p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .projects {
+      background: var(--light);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: 0.25s;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .project-top {
+      height: 180px;
+      display: grid;
+      place-items: center;
+      font-size: 65px;
+      background: linear-gradient(
+        135deg,
+        #eef2ff,
+        #f5f3ff
+      );
+    }
+
+    .project-body {
+      padding: 22px;
+    }
+
+    .project-body h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .project-body p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+
+    .project-meta span {
+      padding: 5px 9px;
+      border-radius: 7px;
+      background: #f3f4f6;
+      color: #4b5563;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .project .btn {
+      width: 100%;
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
+
+    .features {
+      background: white;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .feature h3 {
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    /* =========================
+       TECHNOLOGY
+    ========================= */
+
+    .tech-section {
+      background: #111827;
+      color: white;
+    }
+
+    .tech-section .section-heading p {
+      color: #9ca3af;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 13px;
+    }
+
+    .tech {
+      padding: 20px 12px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .tech:hover {
+      background: rgba(255,255,255,0.09);
+      transform: translateY(-3px);
+    }
+
+    .tech small {
+      display: block;
+      margin-top: 4px;
+      color: #9ca3af;
+      font-weight: 400;
+    }
+
+    /* =========================
+       HOW IT WORKS
+    ========================= */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      text-align: center;
+      padding: 25px;
+    }
+
+    .step-number {
+      width: 55px;
+      height: 55px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+      );
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .step p {
+      color: var(--text);
+      font-size: 14px;
+      margin-top: 7px;
+    }
+
+    /* =========================
+       CONTACT CTA
+    ========================= */
+
+    .cta {
+      padding: 80px 0;
+      background: linear-gradient(
+        135deg,
+        #5b5cf0,
+        #7c3aed
+      );
+      color: white;
+    }
+
+    .cta-box {
+      text-align: center;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .cta h2 {
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    .cta p {
+      max-width: 620px;
+      margin: 0 auto 28px;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .cta .btn {
+      background: white;
+      color: #4f46e5;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #0b1120;
+      color: white;
+      padding: 55px 0 25px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 40px;
+    }
+
+    .footer-brand p {
+      max-width: 330px;
+      color: #9ca3af;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    footer h4 {
+      margin-bottom: 15px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin-bottom: 9px;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    footer li:hover {
+      color: white;
+    }
+
+    .copyright {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #6b7280;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 950px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+
+      .nav-actions .btn-outline {
+        display: none;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .floating-card {
+        right: 10px;
+        bottom: 10px;
+      }
+
+      .category-grid,
+      .projects-grid,
+      .feature-grid,
+      .steps,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .project-preview {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .copyright {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <header class="navbar">
+
+    <div class="container nav-inner">
+
+      <a href="#" class="logo">
+        <span class="logo-icon">🎓</span>
+        CampusCart
+      </a>
+
+      <nav class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#categories">Categories</a>
+        <a href="#technology">Technology</a>
+        <a href="#how-it-works">How It Works</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#projects" class="btn btn-outline">
+          View Projects
+        </a>
+
+        <a href="#contact" class="btn btn-primary">
+          Contact Us
+        </a>
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="container hero-grid">
+
+        <div>
+
+          <div class="badge">
+            <span class="badge-dot"></span>
+            College Projects • Small to Large
+          </div>
+
+          <h1>
+            Your next college
+            <span class="gradient-text">
+              project starts here.
+            </span>
+          </h1>
+
+          <p class="hero-description">
+            Explore ready-to-discuss college projects built with modern
+            technologies. From small academic projects to large final-year
+            applications, find a project that matches your requirements.
+          </p>
+
+          <div class="hero-buttons">
+
+            <a href="#projects" class="btn btn-primary">
+              Explore Projects →
+            </a>
+
+            <a href="#contact" class="btn btn-outline">
+              Talk to Us
+            </a>
+
+          </div>
+
+          <div class="trust-row">
+
+            <span>✓ Small to large projects</span>
+            <span>✓ Multiple technologies</span>
+            <span>✓ Custom requirements</span>
+
+          </div>
+
+        </div>
+
+
+        <!-- HERO PROJECT PREVIEW -->
+
+        <div class="hero-visual">
+
+          <div class="project-dashboard">
+
+            <div class="dashboard-header">
+
+              <div class="dashboard-title">
+                Featured Projects
+              </div>
+
+              <div class="dashboard-label">
+                Student Projects
+              </div>
+
+            </div>
+
+
+            <div class="project-preview">
+
+              <div class="project-card">
+
+                <div class="project-image">
+                  📱
+                </div>
+
+                <div class="project-info">
+
+                  <h4>Mobile E-Commerce App</h4>
+
+                  <p>
+                    Complete mobile application
+                  </p>
+
+                  <span class="tech-tag">
+                    Flutter
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="project-card">
+
+                <div class="project-image">
+                  🤖
+                </div>
+
+                <div class="project-info">
+
+                  <h4>AI / Python Project</h4>
+
+                  <p>
+                    Python based application
+                  </p>
+
+                  <span class="tech-tag">
+                    Python
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="project-card">
+
+                <div class="project-image">
+                  ⚛️
+                </div>
+
+                <div class="project-info">
+
+                  <h4>React Dashboard</h4>
+
+                  <p>
+                    Modern web application
+                  </p>
+
+                  <span class="tech-tag">
+                    React
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="project-card">
+
+                <div class="project-image">
+                  🚀
+                </div>
+
+                <div class="project-info">
+
+                  <h4>Full Stack Platform</h4>
+
+                  <p>
+                    Scalable web solution
+                  </p>
+
+                  <span class="tech-tag">
+                    Laravel
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="floating-card">
+
+            <strong>Multiple Technologies</strong>
+
+            Choose a project based on your
+            preferred technology.
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROJECT CATEGORIES
+    ========================== -->
+
+    <section id="categories">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="eyebrow">
+            Project Categories
+          </div>
+
+          <h2>
+            Projects for different academic requirements
+          </h2>
+
+          <p>
+            Whether you need a small project for a semester or a larger
+            application for your final year, explore different project types.
+          </p>
+
+        </div>
+
+
+        <div class="category-grid">
+
+          <div class="category">
+
+            <div class="category-icon">
+              💡
+            </div>
+
+            <h3>
+              Mini Projects
+            </h3>
+
+            <p>
+              Smaller projects suitable for semester assignments,
+              practicals and academic demonstrations.
+            </p>
+
+          </div>
+
+
+          <div class="category">
+
+            <div class="category-icon">
+              🎓
+            </div>
+
+            <h3>
+              Final Year Projects
+            </h3>
+
+            <p>
+              Larger applications suitable for final-year project
+              requirements and demonstrations.
+            </p>
+
+          </div>
+
+
+          <div class="category">
+
+            <div class="category-icon">
+              🌐
+            </div>
+
+            <h3>
+              Web Applications
+            </h3>
+
+            <p>
+              Modern websites, dashboards, portals and full-stack
+              web applications.
+            </p>
+
+          </div>
+
+
+          <div class="category">
+
+            <div class="category-icon">
+                📱
+            </div>
+
+            <h3>
+              Mobile Applications
+            </h3>
+
+            <p>
+              Android and cross-platform applications using modern
+              mobile technologies.
+            </p>
+
+          </div>
+
+
+          <div class="category">
+
+            <div class="category-icon">
+              🤖
+            </div>
+
+            <h3>
+              AI & Python
+            </h3>
+
+            <p>
+              Python applications, automation, AI concepts and
+              data-oriented projects.
+            </p>
+
+          </div>
+
+
+          <div class="category">
+
+            <div class="category-icon">
+              🛒
+            </div>
+
+            <h3>
+              E-Commerce
+            </h3>
+
+            <p>
+              E-commerce platforms, product systems, admin panels
+              and marketplace concepts.
+            </p>
+
+          </div>
+
+
+          <div class="category">
+
+            <div class="category-icon">
+              📊
+            </div>
+
+            <h3>
+              Management Systems
+            </h3>
+
+            <p>
+              College, inventory, employee, booking and other
+              management system projects.
+            </p>
+
+          </div>
+
+
+          <div class="category">
+
+            <div class="category-icon">
+              ⚙️
+            </div>
+
+            <h3>
+              Custom Projects
+            </h3>
+
+            <p>
+              Have a specific project idea? Discuss your requirements
+              with our team.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURED PROJECTS
+    ========================== -->
+
+    <section id="projects" class="projects">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="eyebrow">
+            Featured Projects
+          </div>
+
+          <h2>
+            Explore our project collection
+          </h2>
+
+          <p>
+            Browse some example projects and contact us to discuss
+            availability, requirements, customization and technology.
+          </p>
+
+        </div>
+
+
+        <div class="projects-grid">
+
+
+          <!-- PROJECT 1 -->
+
+          <article class="project">
+
+            <div class="project-top">
+              📱
+            </div>
+
+            <div class="project-body">
+
+              <h3>
+                Mobile E-Commerce Application
+              </h3>
+
+              <p>
+                A modern mobile commerce application with product,
+                user and administration functionality.
+              </p>
+
+              <div class="project-meta">
+                <span>Flutter</span>
+                <span>Mobile</span>
+                <span>Full Stack</span>
+              </div>
+
+              <a href="#contact" class="btn btn-primary">
+                Enquire About Project
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 2 -->
+
+          <article class="project">
+
+            <div class="project-top">
+              🤖
+            </div>
+
+            <div class="project-body">
+
+              <h3>
+                Python AI Application
+              </h3>
+
+              <p>
+                A Python-based project demonstrating intelligent
+                processing and modern application concepts.
+              </p>
+
+              <div class="project-meta">
+                <span>Python</span>
+                <span>AI</span>
+                <span>Backend</span>
+              </div>
+
+              <a href="#contact" class="btn btn-primary">
+                Enquire About Project
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 3 -->
+
+          <article class="project">
+
+            <div class="project-top">
+              ⚛️
+            </div>
+
+            <div class="project-body">
+
+              <h3>
+                React Admin Dashboard
+              </h3>
+
+              <p>
+                A responsive dashboard with authentication,
+                data management and modern UI components.
+              </p>
+
+              <div class="project-meta">
+                <span>React</span>
+                <span>Dashboard</span>
+                <span>Responsive</span>
+              </div>
+
+              <a href="#contact" class="btn btn-primary">
+                Enquire About Project
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 4 -->
+
+          <article class="project">
+
+            <div class="project-top">
+              🟢
+            </div>
+
+            <div class="project-body">
+
+              <h3>
+                Vue / Nuxt Web Platform
+              </h3>
+
+              <p>
+                A modern server-rendered web platform designed for
+                performance and responsive user experiences.
+              </p>
+
+              <div class="project-meta">
+                <span>Vue</span>
+                <span>Nuxt</span>
+                <span>SSR</span>
+              </div>
+
+              <a href="#contact" class="btn btn-primary">
+                Enquire About Project
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 5 -->
+
+          <article class="project">
+
+            <div class="project-top">
+              ▲
+            </div>
+
+            <div class="project-body">
+
+              <h3>
+                Next.js Full Stack Application
+              </h3>
+
+              <p>
+                A modern full-stack web application with responsive
+                pages and server-side rendering capabilities.
+              </p>
+
+              <div class="project-meta">
+                <span>Next.js</span>
+                <span>React</span>
+                <span>SSR</span>
+              </div>
+
+              <a href="#contact" class="btn btn-primary">
+                Enquire About Project
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT 6 -->
+
+          <article class="project">
+
+            <div class="project-top">
+              🐘
+            </div>
+
+            <div class="project-body">
+
+              <h3>
+                Laravel Management System
+              </h3>
+
+              <p>
+                A complete web-based management system with backend,
+                authentication and administration features.
+              </p>
+
+              <div class="project-meta">
+                <span>Laravel</span>
+                <span>PHP</span>
+                <span>MySQL</span>
+              </div>
+
+              <a href="#contact" class="btn btn-primary">
+                Enquire About Project
+              </a>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+
+    <section class="features">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="eyebrow">
+            Why CampusCart
+          </div>
+
+          <h2>
+            More than just a project listing
+          </h2>
+
+          <p>
+            Start with an existing project idea or discuss your own
+            requirements with us.
+          </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              📐
+            </div>
+
+            <h3>
+              Small to Large
+            </h3>
+
+            <p>
+              Choose from smaller academic projects to larger,
+              feature-rich final-year applications.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              🛠️
+            </div>
+
+            <h3>
+              Custom Requirements
+            </h3>
+
+            <p>
+              Discuss changes, features and technology requirements
+              before selecting a project.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              💻
+            </div>
+
+            <h3>
+              Modern Technologies
+            </h3>
+
+            <p>
+              Projects are available across popular web, mobile
+              and backend technologies.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              📱
+            </div>
+
+            <h3>
+              Mobile Responsive
+            </h3>
+
+            <p>
+              Web projects can be designed to provide a responsive
+              experience across phones, tablets and desktops.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              ⚡
+            </div>
+
+            <h3>
+              SSR Ready
+            </h3>
+
+            <p>
+              Selected projects can use server-side rendering
+              approaches for modern web applications.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              💬
+            </div>
+
+            <h3>
+              Direct Consultation
+            </h3>
+
+            <p>
+              No automatic checkout. Contact us directly to discuss
+              your project and requirements.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         TECHNOLOGY
+    ========================== -->
+
+    <section id="technology" class="tech-section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="eyebrow">
+            Technologies
+          </div>
+
+          <h2>
+            Projects built with modern technologies
+          </h2>
+
+          <p>
+            Choose a project based on the technology you are learning,
+            using or interested in.
+          </p>
+
+        </div>
+
+
+        <div class="tech-grid">
+
+          <div class="tech">
+            Flutter
+            <small>Mobile Apps</small>
+          </div>
+
+          <div class="tech">
+            Python
+            <small>AI & Backend</small>
+          </div>
+
+          <div class="tech">
+            Next.js
+            <small>React Framework</small>
+          </div>
+
+          <div class="tech">
+            Nuxt
+            <small>Vue Framework</small>
+          </div>
+
+          <div class="tech">
+            React
+            <small>Web Applications</small>
+          </div>
+
+          <div class="tech">
+            Vue
+            <small>Web Applications</small>
+          </div>
+
+          <div class="tech">
+            Laravel
+            <small>PHP Framework</small>
+          </div>
+
+          <div class="tech">
+            PHP
+            <small>Backend</small>
+          </div>
+
+          <div class="tech">
+            SSR
+            <small>Server Rendering</small>
+          </div>
+
+          <div class="tech">
+            Responsive
+            <small>All Devices</small>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================== -->
+
+    <section id="how-it-works">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="eyebrow">
+            How It Works
+          </div>
+
+          <h2>
+            Find your project in three steps
+          </h2>
+
+          <p>
+            We keep the process simple. Explore, discuss and get started.
+          </p>
+
+        </div>
+
+
+        <div class="steps">
+
+
+          <div class="step">
+
+            <div class="step-number">
+              1
+            </div>
+
+            <h3>
+              Explore
+            </h3>
+
+            <p>
+              Browse projects by category, project size or technology.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-number">
+              2
+            </div>
+
+            <h3>
+              Contact Us
+            </h3>
+
+            <p>
+              Tell us which project you are interested in and
+              share your requirements.
+            </p>
+
+          </div>
+
+
+          <div class="step">
+
+            <div class="step-number">
+              3
+            </div>
+
+            <h3>
+              Discuss & Start
+            </h3>
+
+            <p>
+              Discuss the project, customization and requirements
+              directly with our team.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT CTA
+    ========================== -->
+
+    <section id="contact" class="cta">
+
+      <div class="container">
+
+        <div class="cta-box">
+
+          <h2>
+            Have a project in mind?
+          </h2>
+
+          <p>
+            Tell us what you need. Whether it is a mini project,
+            final-year project, web application or mobile application,
+            we can discuss the right approach for you.
+          </p>
+
+          <a
+            href="mailto:hello@campuscart.com"
+            class="btn"
+          >
+            Contact Us →
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+
+        <div class="footer-brand">
+
+          <div class="logo">
+
+            <span class="logo-icon">
+              🎓
+            </span>
+
+            CampusCart
+
+          </div>
+
+          <p>
+            A project-focused platform helping students discover
+            small to large college projects built with modern technologies.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h4>
+            Projects
+          </h4>
+
+          <ul>
+
+            <li>
+              <a href="#projects">
+                Featured Projects
+              </a>
+            </li>
+
+            <li>
+              <a href="#categories">
+                Project Categories
+              </a>
+            </li>
+
+            <li>
+              <a href="#technology">
+                Technologies
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h4>
+            Technologies
+          </h4>
+
+          <ul>
+
+            <li>Flutter</li>
+            <li>Python</li>
+            <li>React / Next.js</li>
+            <li>Vue / Nuxt</li>
+
+          </ul>
+
+        </div>
+
+
+        <div>
+
+          <h4>
+            Development
+          </h4>
+
+          <ul>
+
+            <li>Laravel</li>
+            <li>PHP</li>
+            <li>SSR</li>
+            <li>Responsive Web</li>
+
+          </ul>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="copyright">
+
+        <span>
+          © 2026 CampusCart. All rights reserved.
+        </span>
+
+        <span>
+          Student Projects & Development Solutions
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
